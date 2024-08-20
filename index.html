@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Todo List</title>
+</head>
+<body>
+    <h1>Todo List</h1>
+    <form action="/add_task" method="POST">
+        <input type="text" name="content" placeholder="Enter task">
+        <button type="submit">Add Task</button>
+    </form>
+    <ul>
+        {% for index, task in tasks %}
+            <li>
+                {% if task.completed %}
+                    <strike>{{ task.content }}</strike>
+                {% else %}
+                    {{ task.content }}
+                {% endif %}
+                <a href="/complete_task/{{ index }}">Mark as Completed</a>
+                <a href="/delete_task/{{ index }}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
